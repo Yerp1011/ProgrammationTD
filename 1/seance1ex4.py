@@ -39,56 +39,41 @@ def max_score(words):
 
 
 
-def occurences(word, character):
-    m=0
-    for letter in word:
-        if letter==character:
-            m+=1
-    return m
+def possible_word_list(character):
+    character_counts = {letter: 0 for letter in 'abcdefghijklmnopqrstuvwxyz?'}
+    possible_words = []
+
+    for letter in character:
+        character_counts[letter] = character_counts[letter] + 1
 
 
+    for word in List2:
+        mot_counts = {letter: 0 for letter in 'abcdefghijklmnopqrstuvwxyz'}
 
-
-def possible_word_list(characters):
-    n=len(characters)
-    words=List2.copy()
-    # tri sur la longueur du mot
-    for word in words:
-        if len(word)>n:
-            words.remove(word)
-    # tri sur les caractères autorisés
-    for word in words:
-        error=0 #quantifie les écarts entre le mots et les caractères autorisé
         for letter in word:
-            if letter not in characters:
-                error+=1
-        # on autorise qu'un seul joker donc error<=1
-        if error>1:
-            words.remove(word)
-    # à ce stade on peut encore avoir un mot impossible car il utilise 2 fois une lettre que l'on a qu'une seule fois dans notre jeu
+            mot_counts[letter] = mot_counts[letter] + 1
 
-    #tri par nombre d'apparition de chaque lettre
-    for word in words:
+
+        valide = True
         error=0
         for letter in word:
-            necessary=occurences(word,letter) #nombres de caractère letter nécessaire pour le mot
-            available=occurences(characters,letter) #nombres de caractère letter disponible
-            #on veut disponible>=nécessaire
-            if available<necessary:
-                error+=necessary-available #on comptabilise les écarts pour déterminer le nombres de joker nécessaire
+            if mot_counts[letter]>character_counts[letter]:
+                error+=mot_counts[letter]-character_counts[letter]
+        if error>1:
+            valide=False
 
-        if error>1: #mot impossible avec un seul joker
-            words.remove(word)
-    # à ce stade tous les mots de la liste words sont possible
-    return words
+        if valide:
+            possible_words.append(word)
 
-L=possible_word_list('zxcvrrt?')
-# for l in L:
-#     if len(l)>8:
-#         print(l)
+    return possible_words
 
 
-#print(possible_word_list('zxcvrrt?'))
 
-#print(max_score(possible_word_list('zxcvrrt?')))
+#
+# L=possible_word_list('zxcvrrt?')
+# print(L)
+
+
+print(max_score(possible_word_list('zxcvrrt?')))
+print("il y a une erreur d'énoncé, le score de czar est 15 et non 14'")
 
