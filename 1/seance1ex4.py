@@ -48,21 +48,21 @@ def possible_word_list(character):
 
 
     for word in List2:
-        mot_counts = {letter: 0 for letter in 'abcdefghijklmnopqrstuvwxyz'}
+        word_counts = {letter: 0 for letter in 'abcdefghijklmnopqrstuvwxyz'}
 
         for letter in word:
-            mot_counts[letter] = mot_counts[letter] + 1
+            word_counts[letter] = word_counts[letter] + 1
 
 
-        valide = True
+        valid = True
         error=0
         for letter in word:
-            if mot_counts[letter]>character_counts[letter]:
-                error+=mot_counts[letter]-character_counts[letter]
+            if word_counts[letter]>character_counts[letter]:
+                error+=word_counts[letter]-character_counts[letter]
         if error>1:
-            valide=False
+            valid=False
 
-        if valide:
+        if valid:
             possible_words.append(word)
 
     return possible_words
