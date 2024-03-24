@@ -126,6 +126,8 @@ if __name__ == '__main__':
     fraction4 = Fraction(10, 15)
     fraction4.simplify()
     assert fraction4.to_string() == '(2/3)'
+    assert h0.to_string()=='(5288952181499190/540372401792819)'
+    assert leibniz.to_string()=='(6932365438783969/8826280894061276)'
 
 
 
@@ -141,7 +143,7 @@ for k in range (2, iterations+1):
     h0.simplify()
 
 h0.simplify()
-print("The exercise 3 answer is  ", h0.to_string())
+#print("The exercise 3 answer is  ", h0.to_string())
 
 ### Exercise 4
 
@@ -152,7 +154,7 @@ for k in range (0, iterations+1):
     leibniz = leibniz.add(fractionk)
     leibniz.simplify()
 leibniz.simplify()
-print("The exercise 4 answer is ", leibniz.to_string())
+#print("The exercise 4 answer is ", leibniz.to_string())
 
 
 
