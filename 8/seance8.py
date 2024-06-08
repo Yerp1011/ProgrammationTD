@@ -10,6 +10,7 @@ import struct
 
 
 def extract(file_name):
+    """Isolate the header and the sample of a .wav folder """
     file = open(file_name, "rb")           # "rb" = read bytes
 
     data = file.read()
@@ -57,6 +58,7 @@ def extract(file_name):
 
 
 def construct(header, sample, file_name):
+    """Create a .wav folder from a given sample  """
     with open(file_name, "wb") as f:
         #f.write('')
         packed_sample = []
@@ -76,6 +78,7 @@ def construct(header, sample, file_name):
 
 
 def ex3(file_name):
+    """Create a .wav folder by selecting a value out of two in a sample """
     header, samples = extract(file_name)
     modified_samples = []
 
